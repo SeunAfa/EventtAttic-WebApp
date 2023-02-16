@@ -1,0 +1,97 @@
+﻿@using EventAttic.Models
+@model Organiser
+
+@{
+    ViewData["Title"] = "Event Organiser Details";
+}
+
+<style>
+    /* width */
+    ::-webkit-scrollbar {
+        width: 10px;
+        height: 2px;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        background: #888;
+    }
+
+        /* Handle on hover */
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+</style>
+
+<div class="container">
+    <div class="container-fluid">
+        <div id="DetailsContainer" class="">
+
+            <div id="DetailsBgContainer" class="">
+                <img class="DetailsImgUrl" src="~/images/detailsBg.jpg" alt="">
+            </div>
+
+        </div>
+
+        <div id="DetailsInfoContainer" class="bg-white">
+
+            <div id="DetailsInfo_Wrapper" class="">
+
+                <div id="DetailsInfo_Left" class="">
+                    <div style="display:flex;flex-direction:row;">
+                        <h4>Event Organiser</h4>
+                        <h4 style="margin-left:5px;"> - </h4>
+                        <h4 style="margin-left:5px;"> @Model.EventOrganiserName </h4>
+                    </div>
+                    <hr />
+                    <p class="OrganiserDetailBio">@Model.Bio</p>
+
+                    <div class="" style="display:flex;flex-direction:row;margin-top:20px;">
+                        <a class="btn btn-outline-dark" asp-action="Index">
+                             Organiser list
+                        </a>
+                        @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                        {
+                            <a class="btn btn-outline-success " asp-action="Edit" asp-route-id="@Model.Id" style="margin-left:5px;">Edit</a>
+                        }
+                    </div>
+                </div>
+
+                <div id="DetailsInfo_Right" class="" style="margin-top:-250px;">
+
+                    <div id="OrganiserDetails_Card" class="card">
+
+                        <img src="@Model.ProfilePictureURL" class="card-img-top" style="height:250px;">
+                        <div class="card-body">
+                            <p>Follow me on my social media accounts to get the latest update on my upcoming events</p>
+                            <div style="display:flex;flex-direction:column;">
+                                <a class="btn btn-dark organiserInstaLink"   href="@Model.InstaLink" target="organiserInsta"><i class="bi bi-instagram"></i> &nbsp; Instagram</a>
+                                <a class="btn btn-dark organiserTwitterLink" href="@Model.TwitterLink" target="organiserTwitter" style="margin-top:10px;"><i class="bi bi-twitter"></i> &nbsp; Twitter</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+<br />
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            var output = document.getElementById("ProfilePicturePreview");
+            output.src = $("#ProfilePictureURL").val();
+        })
+    </script>
+}

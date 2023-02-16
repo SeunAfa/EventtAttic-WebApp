@@ -1,0 +1,7 @@
+﻿@model string;
+
+@if (User.Identity.IsAuthenticated && User.IsInRole("Admin")){
+    <div id="createItem_Partial" class="text-white" style="position:fixed;right:25px;bottom:140px;">
+        <a asp-controller="@Model" asp-action="Create" class="btn btn-dark"><i class="bi bi-plus-circle" style="margin-right:10px;"></i>Create</a>
+    </div>
+}

@@ -1,0 +1,49 @@
+﻿@{
+    ViewData["Title"] = "Event Location List";
+}
+@model IEnumerable<EventLocation>
+
+<div class="container-fluid p-4">
+    <div  style="padding-bottom:100px;">
+        <h1 class="titleLocation text-white">Event Location - List</h1>
+        <table id="tbl_LocationList" class="table">
+            <thead>
+                <tr class="text-center">
+                    <th class="text-white">@Html.DisplayNameFor(model => model.Id)</th>
+                    <th class="text-white">@Html.DisplayNameFor(model => model.Venue)</th>
+                    <th class="text-white">@Html.DisplayNameFor(model => model.StreetAddress)</th>
+                    <th class="text-white">@Html.DisplayNameFor(model => model.City)</th>
+                    <th class="text-white">@Html.DisplayNameFor(model => model.PostCode)</th>
+                    @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                    {
+                        <th class="text-white"></th>
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr class="text-center">
+                        <td class="text-white">@item.Id</td>
+                        <td class="text-white">@item.Venue</td>
+                        <td class="text-white">@item.StreetAddress</td>
+                        <td class="text-white">@item.City</td>
+                        <td class="text-white">@item.PostCode</td>
+                        @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                        {
+                            <td class="align-middle text-white">
+                                <a class="btn btn-outline-primary" asp-action="Edit" asp-route-id="@item.Id" style="margin-left:10px;" title="Edit"><i class=" bi-pencil-square"></i></a>
+                                <a class="btn btn-outline-info" asp-action="Details" asp-route-id="@item.Id" style="margin-left:10px;" title="Details"><i class=" bi-eye"></i></a>
+                                <a class="btn btn-outline-danger" asp-action="Delete" asp-route-id="@item.Id" style="margin-left:10px;" title="Delete"><i class=" bi-trash"></i></a>
+                            </td>
+                        }
+                    </tr>
+                }
+            </tbody>
+            <tfoot>
+            </tfoot>
+        </table>
+        <br />
+    </div>
+    @await Html.PartialAsync("_CreateItem","EventLocation");
+</div>

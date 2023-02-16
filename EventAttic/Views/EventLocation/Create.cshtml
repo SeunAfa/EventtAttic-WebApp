@@ -1,0 +1,51 @@
+﻿@using EventAttic.Models
+@model EventLocation
+
+@{
+    ViewData["Title"] = "Create New Event Location";
+}
+
+<div class="row text">
+    <div class="row">
+        <div class="col-md-8 offset-2" style="padding-bottom:100px;">
+            <h1 class="text-white">Create New Event Location</h1>
+            <form asp-action="Create" method="post">
+@*               <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+*@         
+                <div class="form-group">
+                    <label asp-for="Venue" class="control-label text-white"></label>
+                    <input asp-for="Venue" class="form-control" />
+                    <span asp-validation-for="Venue" class="text-danger"></span>
+                </div>
+                
+                <div class="form-group">
+                    <label asp-for="StreetAddress" class="control-label text-white"></label>
+                    <input asp-for="StreetAddress" class="form-control" />
+                    <span asp-validation-for="StreetAddress" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="City" class="control-label text-white"></label>
+                    <input asp-for="City" class="form-control" rows="3"/>
+                    <span asp-validation-for="City" class="text-danger"></span>
+                </div>
+
+                     <div class="form-group">
+                    <label asp-for="PostCode" class="control-label text-white"></label>
+                    <input asp-for="PostCode" class="form-control" />
+                    <span asp-validation-for="PostCode" class="text-danger"></span>
+                </div>
+
+                <div class="form-group" style="margin-top:20px;">
+                        <a class="btn btn-outline-secondary" asp-action="Index">Back To List</a>
+                        <input type="submit" value="Create" class="btn btn-outline-success float-right" />
+                </div>
+
+
+            </form>
+        </div>
+    </div>
+</div>
+@section Scripts{
+
+}

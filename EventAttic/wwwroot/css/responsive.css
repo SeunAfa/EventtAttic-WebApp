@@ -1,0 +1,857 @@
+﻿/*Mobile - Tablet_NotAvialable---
+-------------------------------*/
+@media (max-width: 575.98px) {
+    .hideContent {
+        display: none;
+    }
+
+    #ContainerDeviceSize_ImgBg {
+        background-image: url('images/concertBg.jpg');
+        max-height: 100%;
+        height: 600px;
+        background-size: 100%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-right: -50%;
+        transform: translate(-50%, -50%);
+    }
+
+    #ContainerDeviceSize_NotAvialable {
+        display: flex;
+        flex-direction: column;
+        background-color: white;
+        max-width: 100%;
+        max-height: 100%;
+        padding: 10px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-right: -50%;
+        transform: translate(-50%, -50%);
+    }
+}
+
+@media screen and (max-width: 991.98px) {
+    .hideContent {
+        display: none;
+    }
+
+    #ContainerDeviceSize_ImgBg {
+        background-image: url('images/concertBg.jpg');
+        height: 600px;
+        width: 100%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-right: -50%;
+        transform: translate(-50%, -50%);
+    }
+
+    #ContainerDeviceSize_NotAvialable {
+        display: flex;
+        flex-direction: row;
+        background-color: white;
+        width: 600px;
+        padding: 20px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-right: -50%;
+        transform: translate(-50%, -50%);
+    }
+
+    #smartphone_tabletIcons {
+        width: 130px;
+        height: 130px;
+        padding: 20px;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    #EventCatStatus {
+        position: absolute;
+        left: 640px;
+    }
+}
+/*XL - Device -------------------
+-------------------------------*/
+@media screen and (min-width: 992px) and (max-width: 1199.98px) {
+    #ContainerDeviceSize_ImgBg {
+        display: none;
+    }
+    /*---Event - Index List---*/
+    #EventListContainer {
+        max-width: 100%;
+    }
+    /*User Admin*/
+    #EventItemAdmin{
+        margin-top:20px;
+    }
+    /*User Customer*/
+    #EventItemCustomer {
+        overflow: hidden;
+        max-width: 75%;
+        height: 160px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 30px;
+        padding: 10px;
+    }
+
+    #EventItemContent {
+        display: flex;
+        flex-direction: row;
+    }
+
+    #EventItem_Img {
+        height: 140px;
+        width: 200px;
+        object-fit: cover;
+    }
+
+    #EventItem_InfoContainer {
+        height: 140px;
+        overflow: hidden;
+        padding: 10px;
+        margin-left: 0px;
+    }
+
+    #EventItemContentDetails {
+        display: flex;
+        flex-direction: row;
+        margin-top: -10px;
+    }
+
+    #EventCatStatus {
+        position: absolute;
+        right: 180px;
+    }
+
+    #EventItemContentInfo {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .details {
+        text-decoration: none;
+        margin-top: -5px;
+    }
+
+    .EventPrice {
+        margin-top: -15px;
+    }
+
+    #addToBasket_Container {
+        margin-top: -15px;
+    }
+
+    .EditBtnEvent {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: -20px;
+        width: 80px;
+    }
+
+    #AddItemToShoppingCartBtn {
+        background-color: black;
+    }
+    /*--- Event - DetailsPg ---*/
+    #DetailsContainer {
+    }
+
+    #DetailsBgContainer {
+        width: 100%;
+        height: 350px;
+        overflow: hidden;
+        z-index: -1;
+    }
+
+    .DetailsImgUrl {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    #DetailsInfoContainer {
+        z-index: 1;
+        padding: 20px;
+        padding-top: 50px;
+        padding-bottom: 100px;
+    }
+
+    #DetailsInfo_Wrapper {
+        display: flex;
+        flex-direction: row;
+    }
+
+    #DetailsInfo_Left {
+        padding: 10px;
+        max-width: 60%;
+        overflow: hidden;
+        margin-top:80px;
+    }
+
+    #EventArtist {
+        width: 500px;
+        overflow: hidden;
+        display: flex;
+        overflow-x: scroll;
+        flex-direction: row;
+    }
+
+    .EventArtistDetails {
+        height: 100px;
+        width: 100px;
+        border-radius: 50%;
+    }
+
+    #DetailsInfo_Right {
+        padding: 10px;
+        max-width: 40%;
+    }
+
+    #eventDetails_Card {
+        width: 350px;
+    }
+
+
+    /* width */
+    ::-webkit-scrollbar {
+        width: 10px;
+        height: 3px;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+        background: white;
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        background: black;
+    }
+
+        /* Handle on hover */
+        ::-webkit-scrollbar-thumb:hover {
+            background: grey;
+        }
+
+    /*--- Event - DetailsPg ---*/
+    #DetailsContainer {
+    }
+
+    #DetailsBgContainer {
+        width: 100%;
+        height: 350px;
+        overflow: hidden;
+        z-index: -1;
+    }
+
+    .DetailsImgUrl {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    #DetailsInfoContainer {
+        z-index: 1;
+        margin-top: -100px;
+        padding: 20px;
+        padding-top: 50px;
+        padding-bottom: 100px;
+    }
+
+
+    #DetailsInfo_Wrapper {
+        display: flex;
+        flex-direction: row;
+        max-width: 100%;
+    }
+
+    #DetailsInfo_Left {
+        padding: 10px;
+        max-width: 60%;
+        overflow: hidden;
+    }
+
+    #EventArtist {
+        width: 500px;
+        overflow: hidden;
+        display: flex;
+        overflow-x: scroll;
+        flex-direction: row;
+    }
+
+    .EventArtistDetails {
+        height: 100px;
+        width: 100px;
+        border-radius: 50%;
+    }
+
+    #DetailsInfo_Right {
+        padding: 10px;
+        max-width: 40%;
+    }
+
+    .EventDetailDescription {
+        width: 500px;
+        text-align: justify;
+    }
+    #eventDetails_Card {
+        width: 350px;
+    }
+
+
+    /* width */
+    ::-webkit-scrollbar {
+        width: 10px;
+        height: 3px;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+        background: white;
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        background: black;
+    }
+
+        /* Handle on hover */
+        ::-webkit-scrollbar-thumb:hover {
+            background: grey;
+        }
+
+    /*--- Organiser - IndexPg ---*/
+    .OrganiserProfile {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        border: solid 2px white;
+    }
+
+    /*--- Organiser - DetailsPg ---*/
+    .OrganiserDetailBio {
+        width: 500px;
+        text-align: justify;
+    }
+
+    #OrganiserDetails_Card {
+        width: 350px;
+    }
+    /*--- Artist - IndexPg ---*/
+    .ArtistProfile {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        border: solid 2px white;
+    }
+
+    /*--- Artist - DetailsPg ---*/
+    .ArtistDetailBio {
+        width: 500px;
+        text-align: justify;
+    }
+
+    #ArtistDetails_Card {
+        width: 350px;
+    }
+}
+
+
+/*XXL - Device -------------------
+-------------------------------*/
+@media screen and (min-width: 1200px) and (max-width: 1399.98px) {
+    #ContainerDeviceSize_ImgBg {
+        display: none;
+    }
+    /*---Event - Index List---*/
+    #EventListContainer {
+        max-width: 90%;
+    }
+    /*User Admin*/
+    #EventItemAdmin {
+        margin-top: 20px;
+    }
+    /*User Customer*/
+    #EventItemCustomer {
+        overflow: hidden;
+        max-width: 75%;
+        height: 160px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 30px;
+        padding: 10px;
+    }
+
+    #EventItem {
+        overflow: hidden;
+        max-width: 90%;
+        height: 160px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 30px;
+        padding: 10px;
+    }
+
+    #EventItemContent {
+        display: flex;
+        flex-direction: row;
+    }
+
+    #EventItem_Img {
+        height: 140px;
+        width: 200px;
+        object-fit: cover;
+    }
+
+    #EventItem_InfoContainer {
+        height: 140px;
+        overflow: hidden;
+        padding: 10px;
+        margin-left: 0px;
+    }
+
+    #EventItemContentDetails {
+        display: flex;
+        flex-direction: row;
+        margin-top: -10px;
+    }
+
+    #EventCatStatus {
+        position: absolute;
+        right: 300px;
+    }
+
+    #EventItemContentInfo {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .details {
+        text-decoration: none;
+        margin-top: -5px;
+    }
+
+    .EventPrice {
+        margin-top: -15px;
+    }
+
+    #addToBasket_Container {
+        margin-top: -15px;
+    }
+
+    .EditBtnEvent {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: -20px;
+        width: 80px;
+    }
+
+    #AddItemToShoppingCartBtn {
+        background-color: black;
+    }
+
+    /*--- Event - DetailsPg ---*/
+    #DetailsContainer {
+    }
+
+    #DetailsBgContainer {
+        width: 100%;
+        height: 350px;
+        overflow: hidden;
+        z-index: -1;
+    }
+
+    .DetailsImgUrl {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    #DetailsInfoContainer {
+        z-index: 1;
+        margin-top: -100px;
+        padding: 20px;
+        padding-top: 50px;
+        padding-bottom: 100px;
+    }
+
+    #DetailsInfo_Wrapper {
+        display: flex;
+        flex-direction: row;
+        max-width: 100%;
+    }
+
+    #DetailsInfo_Left {
+        padding: 10px;
+        max-width: 60%;
+        overflow: hidden;
+        margin-top: 80px;
+    }
+
+    #EventArtist {
+        width: 500px;
+        overflow: hidden;
+        display: flex;
+        overflow-x: scroll;
+        flex-direction: row;
+    }
+
+    .EventArtistDetails {
+        height: 100px;
+        width: 100px;
+        border-radius: 50%;
+    }
+
+    #DetailsInfo_Right {
+        padding: 10px;
+        max-width: 40%;
+    }
+
+    #eventDetails_Card {
+        width: 350px;
+        margin-left:30px;
+    }
+    .EventDetailDescription {
+        width: 550px;
+        text-align: justify;
+    }
+
+    /* width */
+    ::-webkit-scrollbar {
+        width: 10px;
+        height: 3px;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+        background: white;
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        background: black;
+    }
+
+        /* Handle on hover */
+        ::-webkit-scrollbar-thumb:hover {
+            background: grey;
+        }
+
+    /*--- Organiser - IndexPg ---*/
+    .OrganiserProfile {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        border: solid 2px white;
+    }
+
+    /*--- Organiser - DetailsPg ---*/
+    .OrganiserDetailBio {
+        width: 550px;
+        text-align: justify;
+    }
+
+    #OrganiserDetails_Card {
+        width: 350px;
+        margin-left: 30px;
+    }
+    /*--- Artist - IndexPg ---*/
+    .ArtistProfile {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        border: solid 2px white;
+    }
+
+    /*--- Artist - DetailsPg ---*/
+    .ArtistDetailBio {
+        width: 450px;
+        text-align: justify;
+    }
+
+    #ArtistDetails_Card {
+        width: 350px;
+        right: 10px;
+        position: absolute;
+    }
+}
+@media screen and (max-width: 1200px) {
+    #EventCatStatus {
+        position: absolute;
+        right: 240px;
+    }
+}
+/*---------------------------------------*/
+@media screen and  (min-width: 1399.98px) {
+    #ContainerDeviceSize_ImgBg {
+        display: none;
+    }
+    /*---Event - Index List---*/
+    #EventListContainer {
+        max-width: 90%;
+    }
+    /*User Admin*/
+    #EventItemAdmin {
+        margin-top: 20px;
+    }
+    /*User Customer*/
+    #EventItemCustomer {
+        overflow: hidden;
+        max-width: 75%;
+        height: 160px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 30px;
+        padding: 10px;
+    }
+
+    #EventItem {
+        overflow: hidden;
+        max-width: 90%;
+        height: 160px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 30px;
+        padding: 10px;
+    }
+
+    #EventItemContent {
+        display: flex;
+        flex-direction: row;
+    }
+
+    #EventItem_Img {
+        height: 140px;
+        width: 200px;
+        object-fit: cover;
+    }
+
+    #EventItem_InfoContainer {
+        height: 140px;
+        overflow: hidden;
+        padding: 10px;
+        margin-left: 0px;
+    }
+
+    #EventItemContentDetails {
+        display: flex;
+        flex-direction: row;
+        margin-top: -10px;
+    }
+
+    #EventCatStatus {
+        position: absolute;
+        right: 300px;
+    }
+
+    #EventItemContentInfo {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .details {
+        text-decoration: none;
+        margin-top: -5px;
+    }
+
+    .EventPrice {
+        margin-top: -15px;
+    }
+
+    #addToBasket_Container {
+        margin-top: -15px;
+    }
+
+    .EditBtnEvent {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: -20px;
+        width: 80px;
+    }
+
+    #AddItemToShoppingCartBtn {
+        background-color: black;
+    }
+
+    /*--- Event - DetailsPg ---*/
+    #DetailsContainer {
+    }
+
+    #DetailsBgContainer {
+        width: 100%;
+        height: 350px;
+        overflow: hidden;
+        z-index: -1;
+    }
+
+    .DetailsImgUrl {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    #DetailsInfoContainer {
+        z-index: 1;
+        margin-top: -100px;
+        padding: 20px;
+        padding-top: 50px;
+        padding-bottom: 100px;
+    }
+
+    #DetailsInfo_Wrapper {
+        display: flex;
+        flex-direction: row;
+        max-width: 100%;
+    }
+
+    #DetailsInfo_Left {
+        padding: 10px;
+        max-width: 60%;
+        overflow: hidden;
+        margin-top: 80px;
+    }
+
+    #EventArtist {
+        width: 500px;
+        overflow: hidden;
+        display: flex;
+        overflow-x: scroll;
+        flex-direction: row;
+    }
+
+    .EventArtistDetails {
+        height: 100px;
+        width: 100px;
+        border-radius: 50%;
+    }
+
+    #DetailsInfo_Right {
+        padding: 10px;
+        max-width: 40%;
+    }
+
+    #eventDetails_Card {
+        width: 350px;
+        margin-left: 30px;
+    }
+
+    .EventDetailDescription {
+        width: 550px;
+        text-align: justify;
+    }
+
+    /* width */
+    ::-webkit-scrollbar {
+        width: 10px;
+        height: 3px;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+        background: white;
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        background: black;
+    }
+
+        /* Handle on hover */
+        ::-webkit-scrollbar-thumb:hover {
+            background: grey;
+        }
+
+    /*--- Organiser - IndexPg ---*/
+    .OrganiserProfile {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        border: solid 2px white;
+    }
+
+    /*--- Organiser - DetailsPg ---*/
+    .OrganiserDetailBio {
+        width: 550px;
+        text-align: justify;
+    }
+
+    #OrganiserDetails_Card {
+        width: 350px;
+        margin-left: 30px;
+    }
+    /*--- Artist - IndexPg ---*/
+    .ArtistProfile {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        border: solid 2px white;
+    }
+
+    /*--- Artist - DetailsPg ---*/
+    .ArtistDetailBio {
+        width: 450px;
+        text-align: justify;
+    }
+
+    #ArtistDetails_Card {
+        width: 350px;
+        right: 10px;
+        position: absolute;
+    }
+}
+@media screen and (min-width: 1399.98px) {
+    #EventCatStatus {
+        position: absolute;
+        right: 380px;
+    }
+}
+
+
+
+
+
+
+
+
+
+/*Height Responsive*/
+@media screen and (min-height: 882px) {
+    #createItem_Partial {
+        /*margin-bottom: 140px;*/
+    }
+
+    .footer {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        white-space: nowrap;
+        line-height: 60px;
+    }
+}
+
+/*Height Responsive*/
+@media screen and (max-height: 882px) {
+    #createItem_Partial {
+        /*margin-bottom: 140px;*/
+    }
+
+    .footer {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        white-space: nowrap;
+        line-height: 60px;
+    }
+}

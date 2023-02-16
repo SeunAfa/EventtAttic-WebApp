@@ -1,0 +1,152 @@
+﻿@using EventAttic.Models
+@model Artist
+
+@{
+    ViewData["Title"] = "Artist Details";
+}
+
+<style>
+    #DetailsContainer {
+    }
+
+    #DetailsBgContainer {
+        width: 100%;
+        height: 350px;
+        overflow: hidden;
+        z-index: -1;
+    }
+
+    .DetailsImgUrl {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    #DetailsInfoContainer_Artist {
+        z-index: 1;
+        margin-top: -100px;
+        transform: skewY(-3deg);
+        padding: 20px;
+        padding-top: 50px;
+       padding-bottom:100px;
+    }
+
+
+    #DetailsInfo_Wrapper {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+    }
+
+    #DetailsInfo_Left {
+        padding: 10px;
+        width: 60%;
+    }
+
+    #DetailsInfo_Right {
+        padding: 10px;
+        width: 40%;
+    }
+
+
+    /* width */
+    ::-webkit-scrollbar {
+        width: 10px;
+        height: 2px;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        background: #888;
+    }
+
+        /* Handle on hover */
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+</style>
+
+<div class="container">
+    <div class="container-fluid">
+        <div id="DetailsContainer" class="">
+
+            <div id="DetailsBgContainer" class="">
+                <img class="DetailsImgUrl" src="~/images/detailsBg.jpg" alt="">
+            </div>
+
+        </div>
+
+        <div id="DetailsInfoContainer" class="bg-white">
+
+            <div id="DetailsInfo_Wrapper" class="" >
+
+                <div id="DetailsInfo_Left" class="">
+                    <div style="display:flex;flex-direction:row;">
+                        <h2>Artist</h2>
+                        <h2 style="margin-left:5px;"> - </h2>
+                        <h2 style="margin-left:5px;"> @Model.ArtistName </h2>
+
+                    </div>
+                    <hr class="detailHr" />
+
+
+                    <p class="EventDetailDescription">@Model.Bio</p>
+
+                    <div class="" style="display:flex;flex-direction:row;margin-top:20px;">
+                        <a class="btn btn-outline-dark" asp-action="Index">
+                             Artist list
+                        </a>
+                        @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                        {
+                            <a class="btn btn-outline-success " asp-action="Edit" asp-route-id="@Model.Id" style="margin-left:5px;">Edit</a>
+                        }
+                    </div>
+
+
+
+                </div>
+
+                <div id="DetailsInfo_Right" class="" style="margin-top:-250px;">
+
+                    <div id="eventDetails_Card" class="card" style="">
+      
+
+                        <img src="@Model.StagePictureURL" class="EventCardImg card-img-top" style="height:250px;">
+                        <div class="card-body" style="">
+                           <p>Follow me on my social media accounts to get the latest update on my upcoming events</p>
+                            <div style="display:flex;flex-direction:column;">
+                                <a class="organiserInstaLink btn btn-dark" href="@Model.InstaLink" target="organiserInsta"><i class="bi bi-instagram"></i> &nbsp; Instagram</a>
+                                <a class="organiserTwitterLink btn btn-dark" href="@Model.TwitterLink" target="organiserTwitter" style="margin-top:10px;"><i class="bi bi-twitter"></i> &nbsp; Twitter</a>
+                                <a class="artistSpotifyLink btn btn-dark" href="@Model.SpotifyPlayList" target="artistSpotify" style="margin-top:10px;"><i class="bi bi-spotify"></i> &nbsp; Spotify</a>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+<br />
+
+
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            var output = document.getElementById("ProfilePicturePreview");
+            output.src = $("#ProfilePictureURL").val();
+
+        })
+    </script>
+}

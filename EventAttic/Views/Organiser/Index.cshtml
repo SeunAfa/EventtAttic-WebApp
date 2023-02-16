@@ -1,0 +1,62 @@
+﻿@model IEnumerable<Organiser>
+
+@{
+    ViewData["Title"] = "Event Organisers";
+}
+
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <h1 class="text-white">Event Organisers</h1>
+        <table class="table">
+            <thead>
+                <tr class="text-center">
+                    <th class="text-white">@Html.DisplayNameFor(model => model.Id)</th>
+                    <th class="text-white">@Html.DisplayNameFor(model => model.ProfilePictureURL)</th>
+                    <th class="text-white">@Html.DisplayNameFor(model => model.EventOrganiserName)</th>
+                    <th class="text-white">@Html.DisplayNameFor(model => model.InstaLink)</th>
+                    <th class="text-white">@Html.DisplayNameFor(model => model.TwitterLink)</th>
+                    @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                    {
+                        <th class="text-white"></th>
+                    }
+                    else
+                    {
+                        <th class="text-white"></th>
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr class="text-center ">
+                        <td class="text-white align-middle">@item.Id</td>
+                        <td class="text-white align-middle">
+                            <img class="OrganiserProfile" src="@item.ProfilePictureURL" />
+                        </td>
+                        <td class="text-white align-middle">@item.EventOrganiserName</td>
+                        <td class="text-white align-middle"><a class="organiserInstaLink btn btn-dark" href="@item.InstaLink" target="organiserInsta"><i class="bi bi-instagram"></i></a></td>
+                        <td class="text-white align-middle"><a class="organiserTwitterLink btn btn-dark" href="@item.TwitterLink" target="organiserTwitter"><i class="bi bi-twitter"></i></a></td>
+
+                        @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                        {
+                            <td class="align-middle text-white">
+                                <a class="btn btn-outline-primary" asp-action="Edit" asp-route-id="@item.Id"  title="Edit"><i class=" bi-pencil-square"></i>&nbsp;</a>
+                                <a class="btn btn-outline-info" asp-action="Details" asp-route-id="@item.Id"  title="Details"><i class=" bi-eye"></i>&nbsp;</a>
+                                <a class="btn btn-outline-danger" asp-action="Delete" asp-route-id="@item.Id" title="Delete"><i class=" bi-trash"></i>&nbsp;</a>
+                            </td>
+                        }
+                        else
+                        {
+                            <td class="align-middle text-white">
+                                <a class="btn btn-outline-info" asp-action="Details" asp-route-id="@item.Id"><i class=" bi-eye"></i>&nbsp;Details</a>
+                            </td>
+                        }
+                    </tr>
+                }
+            </tbody>
+            <tfoot>
+            </tfoot>
+        </table>
+    </div>
+</div>
+@await Html.PartialAsync("_CreateItem","Organiser");

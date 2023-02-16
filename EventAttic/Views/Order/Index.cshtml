@@ -1,0 +1,67 @@
+﻿@model List<Order>
+
+@if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+{
+    ViewData["Title"] = "Users Order History";
+}
+else
+{
+    ViewData["Title"] = "Order History";
+}
+
+<div class="row">
+    <div class="col-md-8 offset-2" style="padding-bottom:280px;">
+        @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+        {
+            <h4 class="text-white">Users Order History</h4>
+        }
+        else
+        {
+            <h4 class="text-white">Your Order History</h4>
+        }
+        <table class="table">
+            <thead>
+                <tr>
+                    <th class="text-white" style="width:15%;">Order Id</th>
+                    <th class="text-white" style="width:;">Qunatity</th>
+                    <th class="text-white" style="width:15%;">Total</th>
+                    @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                    {
+                        <th class="text-white">User</th>
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var order in Model)
+                {
+                    <tr>
+                        <td class="align-middle text-white">@order.Id</td>
+                        <td class="align-middle text-white">
+                            <ul style="list-style-type:none;">
+                                @foreach (var item in order.OrderItems)
+                                {
+                                    <li style="margin-top:15px;margin-left:-20px;">
+                                        <div class="align-middle" style="border: solid 2px white;border-radius:15px;padding:10px;background-color:white;">
+                                            <span class="badge bg-black text-white">@item.Amount</span>@*[@item.Price.ToString("c")]*@  <span class="text-black">- @item.Event.Name</span>
+                                        </div>
+                                    </li>
+                                }
+                            </ul>
+                        </td>
+                        <td class="align-middle text-white">@order.OrderItems.Select(m => m.Event.Price * m.Amount).Sum().ToString("c")</td>
+                        @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                        {
+                            <td class="align-middle text-white"> - @order.User.FullName </td>
+                        }
+                    </tr>
+                }
+            </tbody>
+            <tfoot>
+            </tfoot>
+        </table>
+     @*   @if (User.Identity.IsAuthenticated && User.IsInRole("User"))
+        {
+            <button id="" type="submit" value="Place Order" class="btn btn-success form-control" style="margin-top:300px;">Place Order</button>
+        }*@
+    </div>
+</div>

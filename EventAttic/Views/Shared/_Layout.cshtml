@@ -1,0 +1,208 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - EventtAttic</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/EventAttic.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/responsive.css" asp-append-version="true" />
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Carter+One&display=swap" rel="stylesheet">
+    <link href="~/lib/jquery-ui-1.13.2.custom/jquery-ui.min.css" rel="stylesheet" />
+    <style>
+        .dropdown-item:hover {
+            color: white;
+            background-color: black;
+        }
+        /*Device Not Avialable*/
+        #ContainerDeviceSize_ImgBg{
+            background-image: url('images/concertBg.jpg');
+            height: 600px;
+            width: 100%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-right: -50%;
+            transform: translate(-50%, -50%);
+        }
+        #ContainerDeviceSize_NotAvialable{
+            display: flex;
+            flex-direction: row;
+
+            background-color: white;
+            width: 600px;
+            padding: 20px;
+
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-right: -50%;
+            transform: translate(-50%, -50%);
+        }
+        #smartphone_tabletIcons{
+            width: 130px;
+            height: 130px;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body style="background-color:black;">
+    <header class="hideContent">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-black  box-shadow mb-3">
+            <div class="container-fluid">
+                <a class="navbar-brand text-white" asp-area="" asp-controller="Event" asp-action="Index">EventtAttic</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-area="" asp-controller="Event" asp-action="Index">Events</a>
+                        </li>
+                        @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                        {
+                            <div class="dropdown">
+                                <button class="btn  dropdown-toggle text-white  shadow-none" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Content Management
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item " asp-controller="EventLocation" asp-action="Index">Event Location</a></li>
+                                    <li><a class="dropdown-item " asp-controller="Organiser" asp-action="">Organisers</a></li>
+                                    <li><a class="dropdown-item " asp-controller="Artist" asp-action="">Artists</a></li>
+                                </ul>
+                            </div>
+                        }
+
+                        @if (User.IsInRole("User"))
+                        {
+                            <li class="nav-item">
+                                @await Component.InvokeAsync("ShoppingCartIcon")
+                            </li>
+                        }
+
+
+                    </ul>
+                    <partial name="_Identity" />
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <button class="open-button" onclick="openForm()">User Details</button>
+
+    <div class="form-popup" id="myForm">
+        <h4>User Details</h4>
+         <form action="" class="form-container"  >
+       
+               <p>User Login Details</p>
+               
+               <div class="copyInputButton">
+                     <span class="placeHolderUserDetails-Data">
+                         Email:<input type="text" value="user@EventtAttic.com" id="myInputEmail" class="myInput" style="border: none;" disabled>
+                     </span>
+                     <div class="copyIcon">
+                          <span id="" class="myTooltip CopiedEmail">Copy</span>
+                          <i id="EmailDetailsCopy" class="bi bi-clipboard-check"></i >
+                     </div>
+               </div>
+
+               <div class="copyInputButton">
+                     <span class="placeHolderUserDetails-Data">
+                         Password:<input type="text" value="AppUser1425!" id="myInputPassword" class="myInput" style="border: none;" disabled>
+                     </span>
+                     <div class="copyIcon">
+                          <span id="" class="CopiedPassword">Copy</span>
+                          <i id="PasswordDetailsCopy" class="bi bi-clipboard-check"></i >
+                     </div>
+               </div>
+
+               <p style="margin-top:15px;">Paypal User Details - GB</p>
+
+               <div class="copyInputButton">
+                     <span class="placeHolderUserDetails-Data">
+                         Email:<input type="text" value="sb-vnakf23996556@personal.example.com" id="myInputPayPalGBEmail" class="myInput" style="border: none;" disabled>
+                     </span>
+                     <div class="copyIcon">
+                          <span id="" class="myTooltip CopiedPayPalEmail">Copy</span>
+                          <i id="EmailPayPalGBDetailsCopy" class="bi bi-clipboard-check"></i >
+                     </div>
+               </div>
+
+               <div class="copyInputButton">
+                     <span class="placeHolderUserDetails-Data">
+                         PayPal Password:<input type="text" value='ygJ7"-0C' id="myInputPayPalGBPassword" class="myInput" style="border: none;" disabled>
+                     </span>
+                     <div class="copyIcon">
+                          <span id="" class="myTooltip CopiedPayPalGBPassword">Copy</span>
+                          <i id="PasswordPayPalGBDetailsCopy" class="bi bi-clipboard-check"></i >
+                     </div>
+               </div>
+
+               <p style="margin-top:15px;">Paypal User Details - US</p>
+     
+               <div class="copyInputButton">
+                     <span class="placeHolderUserDetails-Data">
+                         Email:<input type="text" value="sb-1u4gg23283396@personal.example.com" id="myInputPayPalUSEmail" class="myInput" style="border: none;" disabled>
+                     </span>
+                     <div class="copyIcon">
+                          <span id="" class="myTooltip CopiedPayPalUSEmail">Copy</span>
+                          <i id="EmailPayPalUSDetailsCopy" class="bi bi-clipboard-check"></i >
+                     </div>
+               </div>
+
+               <div class="copyInputButton">
+                     <span class="placeHolderUserDetails-Data">
+                         Password:<input type="text" value="D&E9i+&4" id="myInputPayPalUSPassword" class="myInput" style="border: none;" disabled>
+                     </span>
+                     <div class="copyIcon">
+                          <span id="" class="myTooltip CopiedPayPalUSPassword">Copy</span>
+                          <i id="PasswordPayPalUSDetailsCopy" class="bi bi-clipboard-check"></i >
+                     </div>
+               </div>
+
+               <button type="button" class="btn cancelUserDetail" onclick="closeForm()" style="margin-top:20px;">Close</button>
+       
+         </form>
+    </div>
+
+    <div class="hideContent container-fluid">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+    <!--Not Avialable_Device-->
+    <div id="ContainerDeviceSize_ImgBg">
+             <div id="ContainerDeviceSize_NotAvialable">             
+             
+                 <img id="smartphone_tabletIcons" src="images/smartphone-tablet_Icons.png">
+             
+                 <div id="ContainerDeviceSize_MSG">
+                       <h4>Sorry but the device you are using is not accessible to EventtAttic</h4>
+                       <P>Please use a laptop or desktop device to access the website<br>
+                        the <b>EventtAttic</b> Tech Department is working hard to make <b>EventtAttic
+                        aviable on the andriod and IOS App stores</b></p>
+                 </div>   
+                 
+             </div>
+    </div>
+
+    <footer class="hideContent footer ">
+        <div class="container text-white">
+            &copy; 2022 - EventtAttic
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/lib/jquery-ui-1.13.2.custom/jquery-ui.min.js"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,101 @@
+﻿@using EventAttic.Data.ViewModels;
+@model LoginVM;
+
+@{
+    ViewData["Title"] = "Log in to your account";
+}
+<style>
+    body, html {
+        height: 100%;
+    }
+
+    #regBck_Container {
+        width: 100%;
+        overflow: hidden;
+    }
+
+    #signupWrapper {
+        position: absolute;
+        margin-top: 50px
+    }
+
+    #regBg {
+        /* Full height */
+        height: 100%;
+        /* Center and scale the image nicely */
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+</style>
+<div id="regBck_Container">
+    <div id="signupWrapper" class="col-md-6 offset-3">
+        <div class="col-md-8 offset-2 bg-black" style="padding:20px;border-radius:15px;">
+             <h4 class="text-white">Log in to your account</h4>
+            @if (TempData["Error"] != null)
+            {
+                    <div class=" alert alert-danger">
+                        <span class=""><b>Sorry</b> - @TempData["Error"]</span>
+                    </div>
+            }
+            <form asp-action="Login" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="EmailAddress" class="control-label text-white"></label>
+                    <input asp-for="EmailAddress" class="form-control" />
+                    <span asp-validation-for="EmailAddress" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Password" class="control-label text-white"></label>
+                    <input asp-for="Password" class="form-control" type="password" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+
+                <div class="form-group" style="margin-top:20px;">
+                    <input class="btn btn-outline-success float-right" type="submit" value="Log in" />
+                    <a class="btn btn-outline-secondary" asp-controller="Event" asp-action="Index" style="margin-left:5px;">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+    <img id="regBg" src="~/images/concertBg.jpg" />
+</div>
+@*<div id="loginBgContainer">
+
+    <img id="loginBg" src="~/images/concertBg.jpg" />
+
+    <div id="LoginForm" class="col-md-6 offset-3">
+        <div class="row">
+            <div class="col-md-8 offset-2 bg-black" style="margin-top:100px;padding:20px;border-radius: 15px;">
+                <h4 class="text-white">Log in to your account</h4>
+                @if (TempData["Error"] != null)
+                {
+                    <div class=" alert alert-danger">
+                        <span class=""><b>Sorry</b> - @TempData["Error"]</span>
+                    </div>
+                }
+                <form asp-action="Login" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="EmailAddress" class="control-label text-white"></label>
+                        <input asp-for="EmailAddress" class="form-control" />
+                        <span asp-validation-for="EmailAddress" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Password" class="control-label text-white"></label>
+                        <input asp-for="Password" class="form-control" type="password"/>
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group" style="margin-top:20px;">
+                        <input class="btn btn-outline-success float-right" type="submit" value="Log in" />
+                        <a class="btn btn-outline-secondary" asp-controller="Event" asp-action="Index" style="margin-left:5px;">Cancel</a>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+
+    </div>
+</div>*@

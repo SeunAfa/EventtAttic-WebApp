@@ -1,0 +1,111 @@
+﻿@using EventAttic.Data.ViewModels;
+@using System.Globalization;
+@model ShoppingCartVM
+
+@{
+    ViewData["Title"] = "ShoppingCart Summary";
+}
+
+<div class="row" style="padding-bottom:350px;">
+    <div class="col-md-8 offset-2">
+        <div class="text-black-center"></div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th class="text-white">Selected Amount</th>
+                    <th class="text-white">Event</th>
+                    <th class="text-white">Price</th>
+                    <th class="text-white">Subtotal</th>
+                    <th class="text-white"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.ShoppingCart.ShoppingCartItems)
+                {
+                    <tr>
+                        <td class="align-middle text-white">@item.Amount</td>
+                        <td class="align-middle text-white">@item.Event.Name</td>
+                        <td class="align-middle text-white">@item.Event.Price.ToString("c")</td>
+                        <td class="align-middle text-white">@((item.Amount * item.Event.Price).ToString("c"))</td>
+                        <td class="align-middle text-white">
+                            <a class="text-white" asp-controller="Order" asp-action="RemoveItemFromShoppingCart"
+                           asp-route-id="@item.Event.Id" style="text-decoration: none;">
+                                <i class="bi bi-cart-dash"></i>
+                            </a>
+                            <a class="text-white" asp-controller="Order" asp-action="AddToShoppingCart"
+                           asp-route-id="@item.Event.Id" style="margin-left:5px;">
+                                <i class="bi bi-cart-plus"></i>
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td class="text-white" ></td>
+                    <td class="text-white"><b>Total:</b></td>
+                    <td class="text-white">@Model.ShoppingCartTotal.ToString("c")</td>
+                    <td id="total" class="text-white">@Model.ShoppingCartTotal.ToString(CultureInfo.InvariantCulture)</td>
+                    <td></td>
+                </tr>
+            </tfoot>
+        </table>
+
+        <div class="text-right" style="margin-top:30px;">
+            <div class="btn-group">
+                @*<a class="btn btn-outline-primary" asp-controller="Order" asp-action="CompleteOrder">
+                    Complete Order
+                </a>*@
+                <a class="text-white" asp-controller="Event" asp-action="Index" style="margin-top:0px;margin-left:0px;text-decoration:none;">
+                    Add More Items
+                </a>
+                <span style="padding:15px;"></span>
+                <div id="paypal-btn" style="margin-top:5px;margin-left:0px;"></div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="https://www.paypalobjects.com/api/checkout.js"></script>
+
+    <script>
+
+        paypal.Button.render({
+            //Configure Enviroment
+            env:"sandbox",
+            client: {
+                sandbox: "AcbJwQLiXOQkxMM4w4YZUavLqhzLgd_V-8Re7e9U6vHfhQFBbCX0yNekzWiYqZcgsi9nqopIS23iFdyL"
+            },
+
+            //Custom Buttton
+            locale: "en_GB",
+            style: {
+                size: "small",
+                color: "gold",
+                shape:"pill"
+            },
+            commit:true,
+
+            //Set up a payment
+            payment:function(data, actions){
+                return actions.payment.create({
+                    transactions:[{
+                        amount:{
+                            total: /*_total*/ document.getElementById("total").innerHTML,
+                            currency: "GBP"
+                        }
+                    }]
+                });
+            },
+            //Execute payment
+            onAuthorize:function(data, actions){
+                return actions.payment.execute().then(function(){
+                    var url = "@Url.Action("CompleteOrder","Order", new {})";
+                   window.location.href = url;
+               })
+            }
+        }, "#paypal-btn");
+    </script>
+}

@@ -1,0 +1,68 @@
+﻿@using EventAttic.Models
+@model Organiser
+
+@{
+    ViewData["Title"] = "Delete Organiser";
+}
+
+<div class="" style="padding-bottom:50px;">
+    <div class="">
+        <div class="col-md-8 offset-2">
+            <h1 class=" text-white">Delete - @Model.EventOrganiserName</h1>
+                <div class="form-group text-center">
+                <img id="ProfilePicturePreview" style="width:200px;height:200px;" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="ProfilePictureURL" class="control-label text-white"></label>
+                    <input asp-for="ProfilePictureURL" class="form-control" readonly/>
+                    <span asp-validation-for="ProfilePictureURL" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                <label asp-for="EventOrganiserName" class="control-label  text-white"></label>
+                <input asp-for="EventOrganiserName" class="form-control" readonly />
+                <span asp-validation-for="EventOrganiserName" class="text-danger"></span>
+                </div>
+
+            <div class="form-group">
+                <label asp-for="InstaLink" class="control-label  text-white"></label>
+                <input asp-for="InstaLink" class="form-control" />
+                <span asp-validation-for="InstaLink" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="TwitterLink" class="control-label  text-white"></label>
+                <input asp-for="TwitterLink" class="form-control" />
+                <span asp-validation-for="TwitterLink" class="text-danger"></span>
+            </div>
+
+                <div class="form-group">
+                    <label asp-for="Bio" class="control-label  text-white"></label>
+                <input asp-for="Bio" class="form-control" readonly />
+                    <span asp-validation-for="Bio" class="text-danger"></span>
+                </div>
+
+                <div class="form-group" style="margin-top:20px;display:flex;flex-direction:row;">
+                <a class="btn btn-outline-secondary" asp-action="Index">Back To List</a>
+                   <form asp-action="Delete" method="post" style="margin-left:5px;">
+                       <input hidden asp-for="Id" />
+                    <input type="submit" value="Delete" class="btn btn-danger float-right" />
+                   </form>
+               
+
+
+                </div>
+
+
+        </div>
+    </div>
+</div>
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            var output = document.getElementById("ProfilePicturePreview");
+            output.src = $("#ProfilePictureURL").val();
+
+        })
+    </script>
+}

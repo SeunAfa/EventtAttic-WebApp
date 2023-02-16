@@ -1,0 +1,117 @@
+﻿@model Event
+@{
+    ViewData["Title"] = "Event Details";
+}
+<div class="container">
+    <div class="container-fluid">
+        <div id="DetailsContainer" class="">
+
+            <div id="DetailsBgContainer" class="">
+                <img class="DetailsImgUrl" src="@Model.ImageUrl" alt="@Model.Name">
+            </div>
+
+        </div>
+
+        <div id="DetailsInfoContainer" class="bg-white">
+
+            <div id="DetailsInfo_Wrapper" class="" style="">
+
+                <div id="DetailsInfo_Left" class="">
+                    <div style="display:flex;flex-direction:row;">
+                        <h4 style="margin-right:5px;"> @Model.Name </h4>
+                        <h4>  -  </h4>
+                        <h4 style="margin-left:5px;">@Model.EventLocation.Venue</h4>
+                    </div>
+                    <hr class="detailHr" />
+                     
+                    <h4><i class="bi bi-geo-alt"></i> @Model.EventLocation.StreetAddress  @Model.EventLocation.City @Model.EventLocation.PostCode</h4>
+                    <div style="display:flex;flex-direction:row;">
+                        <p><i class="bi bi-person"></i> Age Restriction: @Model.AgeRestriction+</p>
+                    </div>
+                    <p class="EventDetailDescription">@Model.Description</p>
+                    <p class="card-text">
+                        <b>Artist Perforimng</b>
+                        <div id="EventArtist" >
+                            @foreach (var artist in Model.Events_Artists)
+                            {
+                                <div class="column text-center" style="padding-bottom:20px; padding-left:10px;padding-right:10px;">
+                                    <img class="EventArtistDetails" src="@artist.Artist.ProfilePictureURL" />
+                                    <br />
+                                    <a class="text-black" asp-controller="Artist" asp-action="Details" asp-route-id="@artist.ArtistId" 
+                                    style="text-decoration:none;">@artist.Artist.ArtistName</a>
+                                </div>
+                            }
+                        </div>
+                    </p>
+
+                    <div class="col-md-12">
+                        <div class=" ">
+                            <p class="card-text text-center">
+                                <a class="btn btn-outline-dark float-right" asp-action="Index">
+                                     Event list
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="DetailsInfo_Right" class="" style="margin-top:-250px;">
+
+                    <div id="eventDetails_Card" class="card" style="position:absolute;">
+                        <div class="card-text" style="position:absolute;margin-top:10px;">
+                           @if (DateTime.Now >= Model.StartDate && DateTime.Now <= Model.EndDate)
+                            {
+                                <p class="badge bg-success text-white" style="margin-left:265px;">Available</p>
+                            }
+                            else if (DateTime.Now > Model.EndDate)
+                            {
+                                <p class="badge bg-danger text-white" style="margin-left:270px;">Expired</p>
+                            }
+                            else
+                            {
+                                <p class="badge bg-primary text-white" style="margin-left:260px;">Upcoming</p>
+                            }
+                        </div>
+
+                        <img src="@Model.ImageUrl" class="EventCardImg card-img-top" style="height:250px;">
+                        <div class="card-body" style="">
+                            <p class="card-text"><i class="bi bi-file-music"></i> @Model.EventGenereCategory</p>
+                            <p class="card-text"><i class="bi bi-clock"></i> @Model.TimeTill</p>
+                            <p class="card-text"><i class="bi bi-calendar4-event"></i> 
+                                <b>Start Date </b>@Model.StartDate.ToString("dd MMM yyyy")
+                            </p>
+                               @*
+                                    @Model.EndDate.ToString("dd MMM yyyy")
+                                    -
+                                    <b>End Date </b>@Model.EndDate.ToString("dd MMM yyyy")
+                                    </p>
+                                    <p class="card-text">
+                                    @*<b><img class="border-info rounded-circle" 
+                                    src="@Model.Organiser.ProfilePictureURL" 
+                                    style="width:90px;height:90px;" /></b>
+                               *@
+                            <p class="card-text">
+                                <b>Hosted By:</b>
+                                <a asp-controller="Organiser" asp-action="Details" asp-route-id="@Model.OrganiserId" 
+                                class="organiserLink text-dark " style="cursor:pointer;"> @Model.Organiser.EventOrganiserName
+                                </a>
+                            </p>
+                                <a class="btn btn-success text-white @((DateTime.Now > Model.EndDate) ? "disabled" : "")"
+                               asp-controller="Order" asp-action="AddToShoppingCart" asp-route-id="@Model.Id"
+                            style="width:100%;">
+                                <i class="bi bi-cart-plus"></i> Add to Cart @Model.Price.ToString("c")
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+        <!--<div class="bg-danger" style="height:300px;width:100%;margin-top:-250px;"> </div>-->
+    </div>
+</div>
+
+<br />

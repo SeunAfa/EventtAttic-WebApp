@@ -1,0 +1,62 @@
+﻿@using EventAttic.Models
+@model EventLocation
+
+@{
+    ViewData["Title"] = "Event Location Details";
+}
+
+<div class="row text">
+    <div class="row">
+        <div class="col-md-8 offset-2" style="padding-bottom:100px;">
+
+            <h1 class="text-white">Details for @Model.Venue</h1>
+
+            <div class="form-group">
+                <label asp-for="Venue" class="control-label text-white"></label>
+                <input asp-for="Venue" class="form-control" readonly />
+                <span asp-validation-for="Venue" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="StreetAddress" class="control-label text-white"></label>
+                <input asp-for="StreetAddress" class="form-control" readonly />
+                <span asp-validation-for="StreetAddress" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="City" class="control-label text-white"></label>
+                <input asp-for="City" class="form-control" readonly />
+                <span asp-validation-for="City" class="text-danger"></span>
+            </div>
+
+
+            <div class="form-group">
+                <label asp-for="PostCode" class="control-label text-white"></label>
+                <input asp-for="PostCode" class="form-control" readonly />
+                <span asp-validation-for="PostCode" class="text-danger"></span>
+            </div>
+
+
+            <div class="form-group" style="margin-top:20px;">
+
+                <a class="btn btn-outline-secondary" asp-action="Index">Back To List</a>
+                @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                {
+                    <a class="btn btn-outline-success float-right" asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
+                }
+
+            </div>
+
+
+        </div>
+    </div>
+</div>
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            var output = document.getElementById("ProfilePicturePreview");
+            output.src = $("#ProfilePictureURL").val();
+
+        })
+    </script>
+}

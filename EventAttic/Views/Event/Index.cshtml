@@ -1,0 +1,172 @@
+﻿@model IEnumerable<Event>
+
+@{
+    ViewData["Title"] = "Event List";
+}
+<style>
+    /*Start Of SearchBar-------
+        -------------------------*/
+    #SearchBgContainer {
+        width: 100%;
+        height: 350px;
+        overflow: hidden;
+    }
+
+    #BgMP4SearchContainer {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: -1;
+        position: relative;
+    }
+
+    #SearchBarSection {
+        width: 600px;
+        margin: auto;
+        z-index: 1;
+        margin-top: -300px;
+    }
+
+    .searchText {
+        font-family: 'Carter One', cursive;
+        font-size: 60px;
+    }
+</style>
+<div id="SearchBgContainer" class="">
+    <video id="BgMP4SearchContainer" loop autoplay muted>
+        <source src="/mp4/SearchBarBg.mp4" type="video/mp4">
+        <source src="/mp4/SearchBarBg.ogg" type="video/ogg">
+    </video>
+    <div id="SearchBarSection" class="">
+        <h1 class="searchText text-white text-center  pb-3">LOOK FOR A GREAT THING TO DO</h1>
+        <form class="form-inline my-2 my-lg-0" asp-controller="Event" asp-action="Filter" style="padding-right: 15px;display:flex;flex-direction:row;">
+            <input name="searchString" type="text" class="form-control" placeholder="Search for a event..." aria-label="Recipient's username" aria-describedby="button-addon2">
+            <button class="btn btn-outline-white my-2 my-sm-0" type="submit" style="margin-left:10px;border:solid 2px white;"><i class="bi bi-search" style="color:white;"></i></button>
+        </form>
+    </div>
+</div>
+<br />
+<div id="EventListContainer" class="container-fluid ">
+    @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+    {
+        @foreach (var item in Model)
+        {
+            <div id="EventItemAdmin">
+                <div id="EventItemCustomer" class="bg-white">
+
+                    <div id="EventItemContent" class="">
+                        <img id="EventItem_Img" src="@item.ImageUrl" style="" />
+
+                        <div id="EventItem_InfoContainer" class="">
+
+                            <p class="" style="margin-top:-10px;">@item.Name</p>
+                            <div id="EventItemContentDetails" class="">
+
+                                <div id="EventCatStatus" style="display:flex;flex-direction:row;margin-top:-30px;">
+                                    <p class="EventCat" style="">@item.EventGenereCategory</p>
+                                    <div class="status" style="margin-left:20px;">
+                                        @if (DateTime.Now >= item.StartDate && DateTime.Now <= item.EndDate)
+                                        {
+                                            <p class="badge bg-success text-white" style="">Available</p>
+                                        }
+                                        else if (DateTime.Now > item.EndDate)
+                                        {
+                                            <p class="badge bg-danger text-white" style="">Expired</p>
+                                        }
+                                        else
+                                        {
+                                            <p class="badge bg-primary text-white" style="">Upcoming</p>
+                                        }
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div id="EventItemContentInfo">
+                                <a class="details text-black" asp-action="Details" asp-route-id="@item.Id" style="cursor:pointer;">@item.EventLocation.Venue @item.EventLocation.StreetAddress @item.EventLocation.City @item.EventLocation.PostCode</a>
+                                <p class="EventTime">@item.TimeTill</p>
+                                <p class="EventPrice">£@item.Price.ToString("0.00")</p>
+                            </div>
+
+                            <div id="addToBasket_Container">
+                                <a id="AddItemToShoppingCartBtn" class="btn text-white @((DateTime.Now > item.EndDate) ? "disabled" : "")"
+                           asp-controller="Order" asp-action="AddToShoppingCart" asp-route-id="@item.Id">
+                                    <i class="bi bi-cart-plus"></i> Add to Cart @*(Price @item.Price.ToString("c"))*@
+                                </a>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+                <a class="EditBtnEvent btn text-white " asp-action="Edit" asp-route-id="@item.Id"><i class="bi bi-pencil-square">&nbsp; Edit</i></a>
+            </div>
+
+        }
+
+    }
+    else
+    {
+
+        @foreach (var item in Model)
+        {
+            if (DateTime.Now <= item.EndDate)
+            {
+
+                <div id="EventItemCustomer" class="bg-white">
+
+                    <div id="EventItemContent" class="">
+                        <img id="EventItem_Img" src="@item.ImageUrl" style="" />
+
+                        <div id="EventItem_InfoContainer" class="">
+
+                            <p class="" style="margin-top:-10px;">@item.Name</p>
+                            <div id="EventItemContentDetails" class="">
+
+                                <div id="EventCatStatus" style="display:flex;flex-direction:row;margin-top:-30px;">
+                                    <p class="EventCat" style="">@item.EventGenereCategory</p>
+                                    <div class="status" style="margin-left:20px;">
+                                        @if (DateTime.Now >= item.StartDate && DateTime.Now <= item.EndDate)
+                                        {
+                                            <p class="badge bg-success text-white" style="">Available</p>
+                                        }
+                                        else if (DateTime.Now > item.EndDate)
+                                        {
+                                            <p class="badge bg-danger text-white" style="">Expired</p>
+                                        }
+                                        else
+                                        {
+                                            <p class="badge bg-primary text-white" style="">Upcoming</p>
+                                        }
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div id="EventItemContentInfo">
+                                <a class="details text-black" asp-action="Details" asp-route-id="@item.Id" style="cursor:pointer;">@item.EventLocation.Venue @item.EventLocation.StreetAddress @item.EventLocation.City @item.EventLocation.PostCode</a>
+                                <p class="EventTime">@item.TimeTill</p>
+                                <p class="EventPrice">£@item.Price.ToString("0.00")</p>
+                            </div>
+
+                            <div id="addToBasket_Container">
+                                <a id="AddItemToShoppingCartBtn" class="btn text-white @((DateTime.Now > item.EndDate) ? "disabled" : "")"
+                       asp-controller="Order" asp-action="AddToShoppingCart" asp-route-id="@item.Id">
+                                    <i class="bi bi-cart-plus"></i> Add to Cart @*(Price @item.Price.ToString("c"))*@
+                                </a>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            }
+        }
+    }
+
+
+</div>
+
+@await Html.PartialAsync("_CreateItem","Event")

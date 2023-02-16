@@ -1,0 +1,59 @@
+﻿@using EventAttic.Models
+@model EventLocation
+
+@{
+    ViewData["Title"] = "Delete Event Location";
+}
+
+<div class="" style="padding-bottom:50px;">
+    <div class="">
+        <div class="col-md-8 offset-2" style="padding-bottom:50px;">
+            <h1 class="text-white">Delete - @Model.Venue</h1>
+            <div class="form-group">
+                <label asp-for="Venue" class="control-label text-white"></label>
+                <input asp-for="Venue" class="form-control" readonly />
+                <span asp-validation-for="Venue" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="StreetAddress" class="control-label text-white"></label>
+                <input asp-for="StreetAddress" class="form-control" readonly />
+                <span asp-validation-for="StreetAddress" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="City" class="control-label text-white"></label>
+                <input asp-for="City" class="form-control" readonly />
+                <span asp-validation-for="City" class="text-danger"></span>
+            </div>
+
+
+            <div class="form-group">
+                <label asp-for="PostCode" class="control-label text-white"></label>
+                <input asp-for="PostCode" class="form-control" readonly />
+                <span asp-validation-for="PostCode" class="text-danger"></span>
+            </div>
+
+                <div class="form-group" style="margin-top:20px;display:flex;flex-direction:row;">
+                   <a class="btn btn-outline-secondary" asp-action="Index">Back To List</a>
+
+                   <form asp-action="Delete" method="post" style="margin-left:5px;">
+                       <input hidden asp-for="Id" />
+                    <input type="submit" value="Delete" class="btn btn-danger float-right" />
+                   </form>
+
+                </div>
+
+
+        </div>
+    </div>
+</div>
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            var output = document.getElementById("ProfilePicturePreview");
+            output.src = $("#ProfilePictureURL").val();
+
+        })
+    </script>
+}

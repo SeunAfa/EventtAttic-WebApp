@@ -1,0 +1,113 @@
+﻿@model NewEventVM
+@using EventAttic.Data.ViewModels;
+@using EventAttic.Data.Enums;
+
+@{
+    ViewData["Title"] = "Create New Event";
+}
+<div class="row">
+
+    <div class="row">
+        <div class="col-md-8 offset-2">
+        <h1 class="text-white">Create New Event</h1>
+            <form asp-action="Create" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="Name" class="control-label text-white"></label>
+                            <input asp-for="Name" class="form-control" />
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="StartDate" class="control-label  text-white"></label>
+                            <input asp-for="StartDate" class="form-control" type="date" />
+                            <span asp-validation-for="StartDate" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="EndDate" class="control-label  text-white"></label>
+                            <input asp-for="EndDate" class="form-control" type="date"/>
+                            <span asp-validation-for="EndDate" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="TimeTill" class="control-label  text-white"></label>
+                            <input asp-for="TimeTill" class="form-control" />
+                            <span asp-validation-for="TimeTill" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Price" class="control-label  text-white"></label>
+                            <input asp-for="Price" type="number" class="form-control" />
+                            <span asp-validation-for="Price" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="ImageUrl" class="control-label  text-white"></label>
+                            <input asp-for="ImageUrl" class="form-control" />
+                            <span asp-validation-for="ImageUrl" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="AgeRestriction" class="control-label  text-white"></label>
+                            <input asp-for="AgeRestriction" class="form-control" />
+                            <span asp-validation-for="AgeRestriction" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="EventLocationId" class="control-label  text-white"></label>
+                            <select asp-for="EventLocationId" asp-items="ViewBag.EventLocationId" class="form-control">
+                                  <option disabled selected>--Select Venue--</option>
+                            </select>
+                            <span asp-validation-for="EventLocationId" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="EventGenereCategory" class="control-label text-white"></label>
+                            <select asp-for="EventGenereCategory" asp-items="Html.GetEnumSelectList<EventGenereCategory>()" class="form-control">
+                                  <option disabled selected>--Select Music Genere--</option>
+                            </select>
+                            <span asp-validation-for="EventGenereCategory" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="ArtistIds" class="control-label  text-white"></label><b class="control-label  text-white">(Ctrl  + Alt) To Select Multiple </b>
+                            <select asp-for="ArtistIds" asp-items="ViewBag.ArtistId" class="form-control" multiple>
+                                <option disabled selected>--Select Performing Artist--</option>
+                            </select>
+                            <span asp-validation-for="ArtistIds" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="OrganiserId" class="control-label  text-white"></label>
+                            <select asp-for="OrganiserId" asp-items="ViewBag.OrganiserId" class="form-control">
+                                <option disabled selected>--Select Organiser--</option>
+                            </select>
+                            <span asp-validation-for="OrganiserId" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label asp-for="Description" class="control-label  text-white"></label>
+                            <textarea asp-for="Description" class="form-control" rows="3"></textarea>
+                            <span asp-validation-for="Description" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 offset-4 text-center"  style="margin-top:30px;">
+                    <img width="100%" id="ImageUrlPreview"; />
+                </div>
+
+                <div class="form-group" style="margin-top:30px;">
+                    <input type="submit" value="Create" class="btn btn-outline-success float-right" />
+                    <a class="btn btn-outline-secondary" asp-action="Index">Back To List</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@section Scripts{
+            <script>
+                $("#ImageUrl").on("change", function () {
+                    var output = document.getElementById("ImageUrlPreview");
+                    output.src = $(this).val();
+                })
+            </script>
+}

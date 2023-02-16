@@ -1,0 +1,48 @@
+﻿@inject UserManager<ApplicationUser> UserManager;
+
+@if (!User.Identity.IsAuthenticated)
+{
+    <a class="btn  my-2 my-sm-0 text-white" asp-controller="Account" asp-action="Login">
+        <i class="bi bi-box-arrow-in-right"></i> Log in
+    </a>
+
+    <a class="btn my-2 my-sm-0 text-primary" asp-controller="Account" asp-action="Register">
+        <i class="bi bi-person-plus"></i> Sign up
+    </a>
+}
+else
+{
+    @*<form class="form-inline my-2 my-lg-0" asp-controller="Event" asp-action="Filter" style="padding-right: 15px;display:flex;flex-direction:row;">
+        <input name="searchString" type="text" class="form-control" placeholder="Search for a event..." aria-label="Recipient's username" aria-describedby="button-addon2">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit" style="margin-left:10px;"><i class="bi bi-search"></i></button>
+    </form>
+    <span style="padding:5px;"></span>*@
+
+    <div class="dropdown" style="margin-right:20px;">
+        <button class="btn  dropdown-toggle text-white shadow-none" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="bi bi-person-badge"></i>Hello @UserManager.GetUserName(User)
+        </button>
+        <ul class="dropdown-menu">
+            <li>
+                <a class="dropdown-item" asp-controller="Order" asp-action="Index">
+                    <i class="bi bi-list"></i>Orders
+                </a>
+            </li>
+            @if (User.IsInRole("Admin"))
+            {
+                <li>
+                    <a class="dropdown-item" asp-controller="Account" asp-action="Users">
+                        <i class="bi bi-people"></i>Users
+                    </a>
+                </li>
+            }
+        </ul>
+    </div>
+
+    <span style="padding:5px;"></span>
+    <form asp-controller="Account" asp-action="Logout">
+        <button class="btn my-2 my-sm-0 text-danger">
+            <i class="bi bi-box-arrow-in-right"></i> Log Out
+        </button>
+    </form>
+}
